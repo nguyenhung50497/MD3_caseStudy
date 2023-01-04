@@ -32,9 +32,11 @@ create table ordermanager(
 	idOrder int not null primary key auto_increment,
     checkIn date not null,
     checkOut date not null,
+    timeRent int not null,
     totalMoney int not null,
     idHouse int not null,
-    idCustomer int not null
+    idCustomer int not null,
+    statusOrder varchar(45) not null
 );
 
 insert into house (nameHouse, typeRoom, addressHouse, amountBedroom, amountBathroom, description, pricePerDay, statusHouse) values ('Nhà A', 'Phòng VIP', 'Hoàn Kiếm', 3, 3, 'Sạch, đẹp', 70, 'Còn trống');
@@ -57,3 +59,8 @@ UPDATE house SET image = 'a.jpg' WHERE idHouse = 5;
 UPDATE customer SET avatar = '1.jpg' WHERE idCustomer = 1;
 UPDATE customer SET avatar = 'a.jpg' WHERE idCustomer = 2;
 UPDATE customer SET avatar = '1.jpg' WHERE idCustomer = 3;
+
+ALTER TABLE `renthouse`.`house` 
+ADD COLUMN `countCustomer` INT NOT NULL AFTER `statusHouse`;
+
+DELETE  FROM ordermanager WHERE idOrder = 10;
